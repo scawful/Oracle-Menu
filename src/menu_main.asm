@@ -598,11 +598,12 @@ Menu_Exit:
 {
     ;set $0303 by using $0202 to index table on exit
     JSR Menu_CheckBottle
-    LDY.w $0202 
+    LDY.w $0202 : BEQ .no_item
     DEY 
     LDA.w Menu_ItemIndex, Y
     STA.w $0303
 
+.no_item
     REP #$20
     STZ $0200
     ;;STZ $11
