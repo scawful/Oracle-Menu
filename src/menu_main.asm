@@ -33,6 +33,7 @@ org $00F877 : db Menu_Entry>>0
 org $00F883 : db Menu_Entry>>8
 org $00F88F : db Menu_Entry>>16
 org $808B6B : LDX.w #$6040
+org $8DDFB2 : LDA.l Menu_ItemIndex, X
 pullpc
 
 org $248000
@@ -569,6 +570,8 @@ Menu_ScrollUp:
 
 .loop
     DEX : DEX : STX.w MenuScrollLevelV
+
+    JSL Menu_UpdateHudItem
     RTS
 }
 
@@ -625,19 +628,48 @@ Menu_Exit:
 ; ===================================================================================
 ; XX MENU HIJACK HUD 
 
-UpdateItemBox:
+HudItems:
+    dw BowsGFX
+    dw BoomsGFX
+    dw HookGFX
+    dw BombsGFX
+    dw DekuMaskGFX
+    dw BottlesGFX
+    dw Fire_rodGFX
+    dw Ice_rodGFX
+    dw LampGFX
+    dw HammerGFX
+    dw GoronMaskGFX
+    dw BottlesGFX
+    dw SomariaGFX
+    dw ByrnaGFX
+    dw BookGFX
+    dw JumpFeatherGFX
+    dw BunnyHoodGFX 
+    dw BottlesGFX
+    dw OcarinaGFX
+    dw MirrorGFX
+    dw ShovelGFX
+    dw PowderGFX
+    dw StoneMaskGFX
+    dw BottlesGFX
+
+Menu_UpdateHudItem:
     PHB
     PHK
     PLB
+    print pc
+    REP #$30
+    LDA.w $0202
+    DEC : ASL : TAX
+    LDY.w HudItems, X
 
-    ; make a new table with pointers
-    ; dw SlingShotGFX
-    ; make a modified version of the draw Y item routine
-    ; instead of using X to index where to draw, use it as the item level
-    ; instead of A being the address, it’s nothing
-    ; drawyitem does LDA [$08]
-    ; you’ll do LDA.l $7EF300,X
-    
+    LDA.w $0000,Y : STA.l $7EC778
+	LDA.w $0002,Y : STA.l $7EC77A
+	LDA.w $0004,Y : STA.l $7EC7B8
+	LDA.w $0006,Y : STA.l $7EC7BA
+    SEP #$30
+
     PLB
     RTL
 
