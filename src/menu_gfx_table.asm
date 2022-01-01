@@ -62,6 +62,9 @@ ShovelGFX:
 	dw $2CD4, $2CD5, $2CE4, $2CE5 ; Flute
 	dw $2CD4, $2CD5, $2CE4, $2CE5 ; Flute (active)
 
+OcarinaGFX:
+    dw $2CD4, $2CD5, $2CE4, $2CE5 ; Flute
+
 ; formerly fishing net
 JumpFeatherGFX:
     dw $2840, $2841, $3C42, $3C43 ; Roc's Feather
@@ -90,7 +93,7 @@ StoneMaskGFX:
     dw $30B4, $30B5, $30C4, $30C5 ; Stone Mask
 
 MirrorGFX:
-	dw $2C72, $2C73, $2C62, $2C63 ; Mirror
+	; dw $2C72, $2C73, $2C62, $2C63 ; Mirror
     dw $2C62, $2C63, $2C72, $2C73 ; Mirror
 
 ; Collectibles
