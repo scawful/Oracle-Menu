@@ -252,7 +252,7 @@ DrawYItems:
 	JSR DrawMenuItem
 
     LDA.w #$7EF354
-    LDX.w #menu_offset(8,20)
+    LDX.w #menu_offset(10,20)
     LDY.w #PowerGloveGFX
     JSR DrawMenuItem
 
@@ -292,7 +292,7 @@ DrawYItems:
 	JSR DrawMenuItem
 
     LDA.w #$7EF355
-    LDX.w #menu_offset(10,20)
+    LDX.w #menu_offset(12,20)
     LDY.w #PegasusBootsGFX
     JSR DrawMenuItem
 
@@ -332,7 +332,7 @@ DrawYItems:
 	JSR DrawMenuItem
 
     LDA.w #$7EF356
-    LDX.w #menu_offset(13,20)
+    LDX.w #menu_offset(14,20)
     LDY.w #FlippersGFX
     JSR DrawMenuItem
 
@@ -367,7 +367,7 @@ DrawYItems:
 	JSR DrawMenuItem
 
     LDA.w #$7EF357
-    LDX.w #menu_offset(15,20)
+    LDX.w #menu_offset(16,20)
     LDY.w #MoonPearlGFX
     JSR DrawMenuItem
 
