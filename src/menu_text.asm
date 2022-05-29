@@ -51,88 +51,88 @@
 ; ===================================================================================
 
 DeathLabel:
-    dw "DEATHS:_"
+  dw "DEATHS:_"
 
 DrawDeathCounter:
-    REP #$30
-    LDX.w #$0E
+  REP #$30
+  LDX.w #$0E
 
 .draw2
-    LDA.w DeathLabel, X
-    STA.w $13CC, X 
-    DEX : DEX : BPL .draw2
+  LDA.w DeathLabel, X
+  STA.w $13CC, X 
+  DEX : DEX : BPL .draw2
 
-    RTS
+  RTS
 
 ; ===================================================================================
 
 ScrollsLabel:
-    dw "SCROLLS:_"
+  dw "SCROLLS:_"
 
 DrawScrollsLabel:
-    LDX.w #$10
+  LDX.w #$10
 
 .draw2
-    LDA.w ScrollsLabel, X
-    STA.w $140C, X 
-    DEX : DEX : BPL .draw2
+  LDA.w ScrollsLabel, X
+  STA.w $140C, X 
+  DEX : DEX : BPL .draw2
 
-    RTS
+  RTS
 
 ; ===================================================================================
 
 PlaytimeLabel:
-    dw "PLAYTIME:_"
+  dw "PLAYTIME:_"
 
 DrawPlaytimeLabel:
-    LDX.w #$10
+  LDX.w #$10
 
 .draw2
-    LDA.w PlaytimeLabel, X
-    STA.w $1692, X 
-    DEX : DEX : BPL .draw2
+  LDA.w PlaytimeLabel, X
+  STA.w $1692, X 
+  DEX : DEX : BPL .draw2
 
-    RTS
+  RTS
 
 ; ===================================================================================
 
 Menu_ItemNames:
-    dw "__SLINGSHOT___  "
-    dw "__BOOMERANG___  "
-    dw "___HOOKSHOT___  "
-    dw "____BOMBS_____  "
-    dw "__DEKU_MASK___  "
-    dw "____BOTTLE____  "
-    dw "___FIRE_ROD___  "
-    dw "___ICE_ROD____  "
-    dw "_____LAMP_____  "
-    dw "____HAMMER____  "
-    dw "__GORON_MASK__  "
-    dw "____BOTTLE____  "
-    dw "___SOMARIA____  "
-    dw "____BYRNA_____  "
-    dw "_SECRET_TOME__  "
-    dw "_JUMP_FEATHER_  "
-    dw "__BUNNY_HOOD__  "
-    dw "____BOTTLE____  "
-    dw "___OCARINA____  "
-    dw "_MAGIC_MIRROR_  "
-    dw "____SHOVEL____  "
-    dw "_MAGIC_POWDER_  "
-    dw "__STONE_MASK__  "
-    dw "____BOTTLE____  "
+  dw "__SLINGSHOT___  "
+  dw "__BOOMERANG___  "
+  dw "___HOOKSHOT___  "
+  dw "____BOMBS_____  "
+  dw "__DEKU_MASK___  "
+  dw "____BOTTLE____  "
+  dw "___FIRE_ROD___  "
+  dw "___ICE_ROD____  "
+  dw "_____LAMP_____  "
+  dw "____HAMMER____  "
+  dw "__GORON_MASK__  "
+  dw "____BOTTLE____  "
+  dw "___SOMARIA____  "
+  dw "____BYRNA_____  "
+  dw "_SECRET_TOME__  "
+  dw "_JUMP_FEATHER_  "
+  dw "__BUNNY_HOOD__  "
+  dw "____BOTTLE____  "
+  dw "___OCARINA____  "
+  dw "_MAGIC_MIRROR_  "
+  dw "____SHOVEL____  "
+  dw "_MAGIC_POWDER_  "
+  dw "__STONE_MASK__  "
+  dw "____BOTTLE____  "
 
 Menu_DrawItemName:
-    LDA.w $0202 : DEC
-    ASL : ASL : ASL : ASL : ASL
-    LDY.w #$000
-    TAX 
+  LDA.w $0202 : DEC
+  ASL : ASL : ASL : ASL : ASL
+  LDY.w #$000
+  TAX 
 .loop
-    LDA.w Menu_ItemNames, X ; Load your text character
-    STA.w $1692, Y ; <- into the buffer
-    INX : INX
-    INY : INY : CPY #$001C : BCC .loop
-    RTS
+  LDA.w Menu_ItemNames, X ; Load your text character
+  STA.w $1692, Y ; <- into the buffer
+  INX : INX
+  INY : INY : CPY #$001C : BCC .loop
+  RTS
 
 ; ===================================================================================
 
@@ -140,80 +140,85 @@ Menu_DrawItemName:
 ;-------------------------------------
 TestLocationName:
     dw "YOUR_HOUSE__"
+;-------------------------------------
 
 DrawLocationName:
-    REP #$30
-    LDA $1B 		; check if indoors or outdoors 
-    AND.w #$00FF    ; isolate bit 
-    CMP.w #$01      ; if 1, then indoors 
-    BEQ .indoors
-    
-    LDA.b $8A
-    ASL : ASL : ASL : ASL : ASL
-    LDY.w #$000
-    TAX 
+{
+  REP #$30
+  LDA $1B 		; check if indoors or outdoors 
+  AND.w #$00FF    ; isolate bit 
+  CMP.w #$01      ; if 1, then indoors 
+  BEQ .indoors
+  
+  LDA.b $8A
+  ASL : ASL : ASL : ASL : ASL
+  LDY.w #$000
+  TAX 
 .loop
-    LDA.w OverworldLocationNames, X ; Load your text character
-    STA.w $12CC, Y ; <- into the buffer
-    INX : INX
-    INY : INY : CPY #$0020 : BCC .loop
-    RTS
+  LDA.w OverworldLocationNames, X ; Load your text character
+  STA.w $12CC, Y ; <- into the buffer
+  INX : INX
+  INY : INY : CPY #$0020 : BCC .loop
+  RTS
 
 .indoors
-    LDX.w #$16
+  LDX.w #$16
 
-    .loop2
-    LDA.w TestLocationName, X
-    STA.w $12CC, X
+  .loop2
+  LDA.w TestLocationName, X
+  STA.w $12CC, X
 
-    DEX : DEX
-    BPL .loop2
+  DEX : DEX
+  BPL .loop2
 
-    RTS
+  RTS
+}
+
+
 ; ===================================================================================
 
 Menu_DrawSelect:
-    REP #$30
-    LDX.w #$16
+  REP #$30
+  LDX.w #$16
 
 .loop
-    LDA.w SelectItemTXT, X
-    STA.w $1194, X
+  LDA.w SelectItemTXT, X
+  STA.w $1194, X
 
-    DEX : DEX
-    BPL .loop
+  DEX : DEX
+  BPL .loop
 
-    RTS
+  RTS
 
 ; ===================================================================================
 
 Menu_DrawQuestStatus:
-    REP #$30
-    LDX.w #$16
+  REP #$30
+  LDX.w #$16
 
 .loop
-    LDA.w QuestStatusTXT, X
-    STA.w $1194, X
+  LDA.w QuestStatusTXT, X
+  STA.w $1194, X
 
-    DEX : DEX
-    BPL .loop
+  DEX : DEX
+  BPL .loop
 
-    RTS
+  RTS
 
 ; ===================================================================================
 
 Menu_DrawAreaNameTXT:
-    REP #$30
-    LDX.w #$26
+  REP #$30
+  LDX.w #$26
 
 .loop
-    LDA.w AreaNameTXT, X
-    STA.w $128C, X
+  LDA.w AreaNameTXT, X
+  STA.w $128C, X
 
-    DEX : DEX
-    BPL .loop
+  DEX : DEX
+  BPL .loop
 
-    RTS
+  RTS
 
 ; ===================================================================================
     
@@ -232,25 +237,25 @@ Menu_DrawAreaNameTXT:
 ; ^This code is not the canon encoding of this character. ex. AF is the proper "I". 08 is not.
 
 Menu_DrawCharacterName:
-    REP #$30
+  REP #$30
 
-    LDX.w #$C
+  LDX.w #$C
 .loop
-    LDA.l $7EF3D9, X
-    CMP.w #$AF : BEQ .fix_i 
-    CMP.w #$10 : BCC .skip ; handle P -> Q gap
-    SBC.b #$10
-    CLC
-    CMP.w #$2A : BCS .fix_lowercase 
+  LDA.l $7EF3D9, X
+  CMP.w #$AF : BEQ .fix_i 
+  CMP.w #$10 : BCC .skip ; handle P -> Q gap
+  SBC.b #$10
+  CLC
+  CMP.w #$2A : BCS .fix_lowercase 
 .skip
-    CLC : ADC #$2550
-    STA.w $138C, X
-    DEX : DEX : BPL .loop
+  CLC : ADC #$2550
+  STA.w $138C, X
+  DEX : DEX : BPL .loop
 
-    RTS
+  RTS
 
 .fix_i
-    LDA.w #$08 : BRA .skip 
+  LDA.w #$08 : BRA .skip 
 
 .fix_lowercase
-    LDA.w #$1D : BRA .skip
+  LDA.w #$1D : BRA .skip

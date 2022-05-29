@@ -32,66 +32,66 @@ DrawMenuItem:
 ;===============================================================================
 
 DrawQuestIcons:
-    LDX.w #$10
+  LDX.w #$10
 
 .loop
-    LDA.w Menu_QuestIcons, X 
-    STA.w $1364, X 
-    LDA.w Menu_QuestIcons+$10, X 
-    STA.w $13A4, X 
-    LDA.w Menu_QuestIcons+$20, X 
-    STA.w $13E4, X 
-    LDA.w Menu_QuestIcons+$30, X 
-    STA.w $1424, X 
-    LDA.w Menu_QuestIcons+$40, X 
-    STA.w $1464, X 
-    LDA.w Menu_QuestIcons+$50, X 
-    STA.w $14A4, X 
-    LDA.w Menu_QuestIcons+$60, X 
-    STA.w $14E4, X 
-    DEX : DEX : BPL .loop
+  LDA.w Menu_QuestIcons, X 
+  STA.w $1364, X 
+  LDA.w Menu_QuestIcons+$10, X 
+  STA.w $13A4, X 
+  LDA.w Menu_QuestIcons+$20, X 
+  STA.w $13E4, X 
+  LDA.w Menu_QuestIcons+$30, X 
+  STA.w $1424, X 
+  LDA.w Menu_QuestIcons+$40, X 
+  STA.w $1464, X 
+  LDA.w Menu_QuestIcons+$50, X 
+  STA.w $14A4, X 
+  LDA.w Menu_QuestIcons+$60, X 
+  STA.w $14E4, X 
+  DEX : DEX : BPL .loop
 
-    LDA.w #$20F5 : STA.w $13B4 : STA.w $13F4 : STA.w $1474 : STA.w $14B4 
+  LDA.w #$20F5 : STA.w $13B4 : STA.w $13F4 : STA.w $1474 : STA.w $14B4 
 
-    RTS
+  RTS
 
 ;===============================================================================
 
 DrawTriforceIcon:
-    LDA.l $7EF37A 
-    LDX.w #$3534                    
-    LDY.w #$3544
+  LDA.l $7EF37A 
+  LDX.w #$3534                    
+  LDY.w #$3544
 
-    LSR : BCC +                     
-    STX.w $1366 : INX : STX.w $1368 : DEX
-    STY.w $13A6 : INY : STY.w $13A8 : DEY
+  LSR : BCC +                     
+  STX.w $1366 : INX : STX.w $1368 : DEX
+  STY.w $13A6 : INY : STY.w $13A8 : DEY
 
-+   LSR : BCC +
-    STX.w $136A : INX : STX.w $136C : DEX
-    STY.w $13AA : INY : STY.w $13AC : DEY
++ LSR : BCC +
+  STX.w $136A : INX : STX.w $136C : DEX
+  STY.w $13AA : INY : STY.w $13AC : DEY
 
-+   LSR : BCC +
-    STX.w $136E : INX : STX.w $1370 : DEX
-    STY.w $13AE : INY : STY.w $13B0 : DEY
++ LSR : BCC +
+  STX.w $136E : INX : STX.w $1370 : DEX
+  STY.w $13AE : INY : STY.w $13B0 : DEY
 
-+   LSR : BCC +
-    STX.w $13E4 : INX : STX.w $13E6 : DEX
-    STY.w $1424 : INY : STY.w $1426 : DEY
-    ;;
-+   LSR : BCC +
-    STX.w $13E8 : INX : STX.w $13EA : DEX
-    STY.w $1428 : INY : STY.w $142A : DEY
++ LSR : BCC +
+  STX.w $13E4 : INX : STX.w $13E6 : DEX
+  STY.w $1424 : INY : STY.w $1426 : DEY
 
-+   LSR : BCC +
-    STX.w $13EC : INX : STX.w $13EE : DEX
-    STY.w $142C : INY : STY.w $142E : DEY
++ LSR : BCC +
+  STX.w $13E8 : INX : STX.w $13EA : DEX
+  STY.w $1428 : INY : STY.w $142A : DEY
 
-+   LSR : BCC +
-    STX.w $13F0 : INX : STX.w $13F2 : DEX
-    STY.w $1430 : INY : STY.w $1432 : DEY
++ LSR : BCC +
+  STX.w $13EC : INX : STX.w $13EE : DEX
+  STY.w $142C : INY : STY.w $142E : DEY
+
++ LSR : BCC +
+  STX.w $13F0 : INX : STX.w $13F2 : DEX
+  STY.w $1430 : INY : STY.w $1432 : DEY
 
 +
-	RTS
+  RTS
 
 ;===============================================================================
 
@@ -141,70 +141,35 @@ DrawHeartPieces:
 ;===============================================================================
 
 DrawMusicNotes:
-    LDA.w #$01
-    STA.w MusicNoteValue
-    LDA.w #MusicNoteValue
-    LDX.w #menu_offset(17,8)
+  LDA.w #$01
+  STA.w MusicNoteValue
+  LDA.w #MusicNoteValue
+  LDX.w #menu_offset(17,8)
 	LDY.w #QuarterNoteGFX
 	JSR DrawMenuItem
 
-    LDA.w #$02
-    STA.w MusicNoteValue
-    LDA.w #MusicNoteValue
-    LDX.w #menu_offset(17,11)
+  LDA.w #$02
+  STA.w MusicNoteValue
+  LDA.w #MusicNoteValue
+  LDX.w #menu_offset(17,11)
 	LDY.w #QuarterNoteGFX
 	JSR DrawMenuItem
 
-    LDA.w #$03
-    STA.w MusicNoteValue
-    LDA.w #MusicNoteValue
-    LDX.w #menu_offset(17,14)
+  LDA.w #$03
+  STA.w MusicNoteValue
+  LDA.w #MusicNoteValue
+  LDX.w #menu_offset(17,14)
 	LDY.w #QuarterNoteGFX
 	JSR DrawMenuItem
 
-    LDA.w #$04
-    STA.w MusicNoteValue
-    LDA.w #MusicNoteValue
-    LDX.w #menu_offset(17,17)
+  LDA.w #$04
+  STA.w MusicNoteValue
+  LDA.w #MusicNoteValue
+  LDX.w #menu_offset(17,17)
 	LDY.w #QuarterNoteGFX
 	JSR DrawMenuItem
 
-    RTS
-
-;===============================================================================
-
-; DrawMenuItem2:
-; 	STA.b $08
-; 	STY.b $00
-
-; 	LDA.b [$08]
-; 	AND.w #$00FF
-
-; 	BNE .not_zero
-
-; 	LDY.w #NothingGFX
-; 	BRA .draw
-
-; .not_zero
-; 	DEC
-
-; 	ASL
-; 	ASL
-; 	ADC.b $00
-; 	TAY
-
-; .draw
-; 	STY.b $00
-; 	INY : INY : STY.b $02
-; 	INY : INY : STY.b $04
-; 	INY : INY : STY.b $06
-
-; 	LDA.b ($00) : STA.l $7EC700,X
-; 	LDA.b ($02) : STA.l $7EC702,X
-; 	LDA.b ($04) : STA.l $7EC740,X
-; 	LDA.b ($06) : STA.l $7EC742,X
-
-; 	RTS
+  RTS
 
 ;===============================================================================
 
@@ -230,14 +195,13 @@ DrawYItems:
 	LDY.w #HookGFX
 	JSR DrawMenuItem
 
-
-    LDA.l $7EF343
-    CMP.w #$00 : BEQ .no_bomb
-    LDA.w #$0001
-    STA.w MenuItemValueSpoof
-    LDA.w #MenuItemValueSpoof
-    LDX.w #menu_offset(7,11)
-    LDY.w #BombsGFX
+  LDA.l $7EF343
+  CMP.w #$00 : BEQ .no_bomb
+  LDA.w #$0001
+  STA.w MenuItemValueSpoof
+  LDA.w #MenuItemValueSpoof
+  LDX.w #menu_offset(7,11)
+  LDY.w #BombsGFX
 	JSR DrawMenuItem
 .no_bomb
 
@@ -251,10 +215,10 @@ DrawYItems:
 	LDY.w #BottlesGFX
 	JSR DrawMenuItem
 
-    LDA.w #$7EF354
-    LDX.w #menu_offset(10,20)
-    LDY.w #PowerGloveGFX
-    JSR DrawMenuItem
+  LDA.w #$7EF354
+  LDX.w #menu_offset(10,20)
+  LDY.w #PowerGloveGFX
+  JSR DrawMenuItem
 
 	LDA.w #$7EF345
 	LDX.w #menu_offset(10,2)
@@ -266,17 +230,17 @@ DrawYItems:
 	LDY.w #Ice_rodGFX
 	JSR DrawMenuItem
 
-    LDA.l $7EF34A
-    CMP.w #$00 : BEQ .no_lamp
-    DEC
-    .no_lamp
-    STA.w MenuItemValueSpoof
-    LDA.w #MenuItemValueSpoof
+  LDA.l $7EF34A
+  CMP.w #$00 : BEQ .no_lamp
+  DEC
+  .no_lamp
+  STA.w MenuItemValueSpoof
+  LDA.w #MenuItemValueSpoof
 	LDX.w #menu_offset(10,8)
 	LDY.w #LampGFX
 	JSR DrawMenuItem
 
-    LDA.w #$7EF34B
+  LDA.w #$7EF34B
 	LDX.w #menu_offset(10,11)
 	LDY.w #HammerGFX
 	JSR DrawMenuItem
@@ -291,10 +255,10 @@ DrawYItems:
 	LDY.w #BottlesGFX
 	JSR DrawMenuItem
 
-    LDA.w #$7EF355
-    LDX.w #menu_offset(12,20)
-    LDY.w #PegasusBootsGFX
-    JSR DrawMenuItem
+  LDA.w #$7EF355
+  LDX.w #menu_offset(12,20)
+  LDY.w #PegasusBootsGFX
+  JSR DrawMenuItem
 
 	LDA.w #$7EF350
 	LDX.w #menu_offset(13,2)
@@ -316,7 +280,7 @@ DrawYItems:
 	LDY.w #BookGFX
 	JSR DrawMenuItem
 
-    LDA.w #$7EF34D
+  LDA.w #$7EF34D
 	LDX.w #menu_offset(13,11)
 	LDY.w #JumpFeatherGFX
 	JSR DrawMenuItem
@@ -331,12 +295,12 @@ DrawYItems:
 	LDY.w #BottlesGFX
 	JSR DrawMenuItem
 
-    LDA.w #$7EF356
-    LDX.w #menu_offset(14,20)
-    LDY.w #FlippersGFX
-    JSR DrawMenuItem
+  LDA.w #$7EF356
+  LDX.w #menu_offset(14,20)
+  LDY.w #FlippersGFX
+  JSR DrawMenuItem
 
-    LDA.w #$7EF34C ; ocarina
+  LDA.w #$7EF34C ; ocarina
 	LDX.w #menu_offset(16,2)
 	LDY.w #ShovelGFX
 	JSR DrawMenuItem
@@ -346,12 +310,12 @@ DrawYItems:
 	LDY.w #MirrorGFX
 	JSR DrawMenuItem
 
-    LDA.w #$7EF34F
+  LDA.w #$7EF34F
 	LDX.w #menu_offset(16,8)
 	LDY.w #ShovelGFX
 	JSR DrawMenuItem
 
-    LDA.w #$7EF344
+  LDA.w #$7EF344
 	LDX.w #menu_offset(16,11)
 	LDY.w #PowderGFX
 	JSR DrawMenuItem
@@ -366,10 +330,10 @@ DrawYItems:
 	LDY.w #BottlesGFX
 	JSR DrawMenuItem
 
-    LDA.w #$7EF357
-    LDX.w #menu_offset(16,20)
-    LDY.w #MoonPearlGFX
-    JSR DrawMenuItem
+  LDA.w #$7EF357
+  LDX.w #menu_offset(16,20)
+  LDY.w #MoonPearlGFX
+  JSR DrawMenuItem
 
 	RTS
 
@@ -378,22 +342,22 @@ Menu_DrawQuestItems:
 	LDA.b #$7E : STA.b $0A
 	REP #$30
 
-    LDA.w #$7EF359
-    LDX.w #menu_offset(14,2)
-    LDY.w #SwordGFX
-    JSR DrawMenuItem 
+  LDA.w #$7EF359
+  LDX.w #menu_offset(14,2)
+  LDY.w #SwordGFX
+  JSR DrawMenuItem 
 
-    LDA.w #$7EF35A
-    LDX.w #menu_offset(14,5)
-    LDY.w #ShieldGFX
-    JSR DrawMenuItem
+  LDA.w #$7EF35A
+  LDX.w #menu_offset(14,5)
+  LDY.w #ShieldGFX
+  JSR DrawMenuItem
 
-    LDA.l $7EF35B
-    INC
-    STA.w MenuItemValueSpoof
-    LDA.w #MenuItemValueSpoof
-    LDX.w #menu_offset(14,8)
-    LDY.w #TunicGFX
-    JSR DrawMenuItem
+  LDA.l $7EF35B
+  INC
+  STA.w MenuItemValueSpoof
+  LDA.w #MenuItemValueSpoof
+  LDX.w #menu_offset(14,8)
+  LDY.w #TunicGFX
+  JSR DrawMenuItem
 
-    RTS
+  RTS
